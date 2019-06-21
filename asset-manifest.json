@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/static/css/main.d99e285c.chunk.css",
-    "main.js": "/static/js/main.31f6f517.chunk.js",
-    "main.js.map": "/static/js/main.31f6f517.chunk.js.map",
-    "runtime~main.js": "/static/js/runtime~main.a8a9905a.js",
-    "runtime~main.js.map": "/static/js/runtime~main.a8a9905a.js.map",
-    "static/css/2.31dafeb2.chunk.css": "/static/css/2.31dafeb2.chunk.css",
-    "static/js/2.df614183.chunk.js": "/static/js/2.df614183.chunk.js",
-    "static/js/2.df614183.chunk.js.map": "/static/js/2.df614183.chunk.js.map",
-    "index.html": "/index.html",
-    "precache-manifest.c7ea1f5271bf17586d8fa536f958f1df.js": "/precache-manifest.c7ea1f5271bf17586d8fa536f958f1df.js",
-    "service-worker.js": "/service-worker.js",
-    "static/css/2.31dafeb2.chunk.css.map": "/static/css/2.31dafeb2.chunk.css.map",
-    "static/css/main.d99e285c.chunk.css.map": "/static/css/main.d99e285c.chunk.css.map",
-    "static/media/DuskLogo.png": "/static/media/DuskLogo.4fa4780b.png"
+    "main.css": "/DuskGameTable/static/css/main.d99e285c.chunk.css",
+    "main.js": "/DuskGameTable/static/js/main.8b003a83.chunk.js",
+    "main.js.map": "/DuskGameTable/static/js/main.8b003a83.chunk.js.map",
+    "runtime~main.js": "/DuskGameTable/static/js/runtime~main.ef6b079c.js",
+    "runtime~main.js.map": "/DuskGameTable/static/js/runtime~main.ef6b079c.js.map",
+    "static/css/2.31dafeb2.chunk.css": "/DuskGameTable/static/css/2.31dafeb2.chunk.css",
+    "static/js/2.df614183.chunk.js": "/DuskGameTable/static/js/2.df614183.chunk.js",
+    "static/js/2.df614183.chunk.js.map": "/DuskGameTable/static/js/2.df614183.chunk.js.map",
+    "index.html": "/DuskGameTable/index.html",
+    "precache-manifest.92440e8e2d716bd1dc7b75a8530c87fa.js": "/DuskGameTable/precache-manifest.92440e8e2d716bd1dc7b75a8530c87fa.js",
+    "service-worker.js": "/DuskGameTable/service-worker.js",
+    "static/css/2.31dafeb2.chunk.css.map": "/DuskGameTable/static/css/2.31dafeb2.chunk.css.map",
+    "static/css/main.d99e285c.chunk.css.map": "/DuskGameTable/static/css/main.d99e285c.chunk.css.map",
+    "static/media/DuskLogo.png": "/DuskGameTable/static/media/DuskLogo.4fa4780b.png"
   }
 }
