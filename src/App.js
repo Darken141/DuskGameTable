@@ -1,26 +1,47 @@
 import React from 'react';
-import logo from './logo.svg';
+import logo from './DuskLogo.png';
+import Particles from 'react-particles-js';
+import Table from './components/Table';
+import Dashboard from './components/DashBoard';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const particlesOption = {
+  particles: {
+    number: {
+      value: 30,
+      density: {
+        enable: true,
+        value_area: 200
+      }
+    }
+  }
+}
+
+class App extends React.Component {
+  constructor(){
+    super()
+    this.state = {
+      route: "home"
+    }
+  }
+
+  render() {
+    return (
+      <div className="App">
+      <Particles className="particles" params={particlesOption}/>
+      {
+        this.state.route === "admin" ? 
+        <Dashboard/>
+        :
+        <div>
+          <img className="logo pt4" src={logo} alt="DuskTillDawn-Logo"/>
+          <Table/> 
+        </div>
+      }
+      </div>
+    );
+  }
+
 }
 
 export default App;
