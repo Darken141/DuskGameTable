@@ -23,55 +23,78 @@ class App extends React.Component {
     this.state = {
       isLogginIn: false,
       game: {
-        holdem1: {
-          name: 'NHLE 1/1',
-          buyIn: '£50',
-          gameRunning: 0,
-          seatsAvailable: 8,
-          waiting: 0
-        },
-        holdem2: {
-          name: 'NHLE 1/2',
-          buyIn: '£100',
-          gameRunning: 0,
-          seatsAvailable: 8,
-          waiting: 0
-        },
-        plo1: {
-          name: 'PLO 1/1/2',
-          buyIn: '£100',
-          gameRunning: 0,
-          seatsAvailable: 8,
-          waiting: 0
-        },
-        plo2: {
-          name: 'PLO 2/2/5',
-          buyIn: '£200',
-          gameRunning: 0,
-          seatsAvailable: 8,
-          waiting: 0
-        },
-        dc1: {
-          name: 'Dealer Choice 1/1',
-          buyIn: '£100',
-          gameRunning: 0,
-          seatsAvailable: 8,
-          waiting: 0
-        },
-        dc2: {
-          name: 'Dealer Choice 2/2',
-          buyIn: '£200',
-          gameRunning: 0,
-          seatsAvailable: 8,
-          waiting: 0
-        }
+        table: [{
+                id: '',
+                name: '',
+                buyIn: '',
+                gameRunning: 0,
+                seatsAvailable: 0,
+                waiting: 0
+              },
+              {
+                id: '',
+                name: '',
+                buyIn: '',
+                gameRunning: 0,
+                seatsAvailable: 0,
+                waiting: 0
+              },
+              {
+                id: '',
+                name: '',
+                buyIn: '',
+                gameRunning: 0,
+                seatsAvailable: 0,
+                waiting: 0
+              },
+              {
+                id: '',
+                name: '',
+                buyIn: '',
+                gameRunning: 0,
+                seatsAvailable: 0,
+                waiting: 0
+              },
+              {
+                id: '',
+                name: '',
+                buyIn: '',
+                gameRunning: 0,
+                seatsAvailable: 0,
+                waiting: 0
+              },
+              {
+                id: '',
+                name: '',
+                buyIn: '',
+                gameRunning: 0,
+                seatsAvailable: 0,
+                waiting: 0
+               },
+        ]
       }
     }
   }
 
+loadTable = () => {
+  setInterval(() => {fetch('http://localhost:3000/', {
+            method: 'get'
+        })
+        .then(response => response.json())
+        .then(game => {
+            if(game) {
+                this.setState({
+                  game: 
+                    game.game
+                })
+            }
+        })}, 1000)
+
+}
+
   render() {
     return (
-      <div className="App">
+      <div onLoad={this.loadTable} className="App">
       <Particles className="particles" params={particlesOption}/>
       {
         this.state.route === "admin" ? 
