@@ -1,53 +1,360 @@
 import React from 'react';
 
-const DashBoard = () => {
-    return (
-        <div>
-            <h1 className="white">Settings</h1>
-            <div className="center">
-                <div className="pa2 mr6 white-80">
-                    <div className="measure">
-                        <label htmlFor="name" className="f6 b db mb2 white">Game</label>
-                        <select id="name" className="ba b--black-20 pa3 mb2 w-100" type="text" aria-describedby="name-desc">
-                        <option value="NHLE 1/1" defaultValue>NHLE 1/1</option>
-                        <option value="NHLE 1/2">NHLE 1/2</option>
-                        <option value="PLO 1/1">PLO 1/1</option>
-                        <option value="PLO 2/2">PLO 2/2</option>
-                        <option value="Dealer Choice 1/1">Dealer Choice 1/1</option>
-                        <option value="Dealer Choice 2/2">Dealer Choice 2/2</option>
-                        </select>
-                        <small id="name-desc" className="f6 white-60 db mb2">Type of game.</small>
-                    </div>
-                </div>
-                <div>
-                    <div className="pa2 white-80">
-                        <div className="measure">
-                            <label htmlFor="teble-number" className="f6 b db mb2 white">Tables</label>
-                            <input id="table-number" className="ba b--black-20 pa3 mb2 w-100" type="number" placeholder="0" min="0" aria-describedby="table-num-desc"/>
-                            <small id="table-num-desc" className="f6 white-60 db mb2">Number of Tables.</small>
-                        </div>
-                    </div>
-                    <div className="pa2 white-80">
-                        <div className="measure">
-                            <label htmlFor="seats-number" className="f6 b db mb2 white">Tables</label>
-                            <input id="seats-number" className="ba b--black-20 pa3 mb2 w-100" type="number" placeholder="0" min="0" max="10" aria-describedby="seats-num-desc"/>
-                            <small id="seats-num-desc" className="f6 white-60 db mb2">Players in-game.</small>
-                        </div>
-                    </div>
-                    <div className="pa2 white-80">
-                        <div className="measure">
-                            <label htmlFor="wait-number" className="f6 b db mb2 white">Tables</label>
-                            <input id="wait-number" className="ba b--black-20 pa3 mb2 w-100" type="number" placeholder="0" min="0" max="99" aria-describedby="wait-num-desc"/>
-                            <small id="wait-num-desc" className="f6 white-60 db mb2">Players on the waiting list</small>
-                        </div>
-                    </div>
+class DashBoard extends React.Component {
+    constructor(){
+        super();
+        this.state = {
+            table: [{
+                      id: '',
+                      name: '',
+                      buyin: '',
+                      gamerunning: 0,
+                      seatsavailable: 0,
+                      waiting: 0
+                    },
+                    {
+                      id: '',
+                      name: '',
+                      buyin: '',
+                      gamerunning: 0,
+                      seatsavailable: 0,
+                      waiting: 0
+                    },
+                    {
+                      id: '',
+                      name: '',
+                      buyin: '',
+                      gamerunning: 0,
+                      seatsavailable: 0,
+                      waiting: 0
+                    },
+                    {
+                      id: '',
+                      name: '',
+                      buyin: '',
+                      gamerunning: 0,
+                      seatsavailable: 0,
+                      waiting: 0
+                    },
+                    {
+                      id: '',
+                      name: '',
+                      buyin: '',
+                      gamerunning: 0,
+                      seatsavailable: 0,
+                      waiting: 0
+                    },
+                    {
+                      id: '',
+                      name: '',
+                      buyin: '',
+                      gamerunning: 0,
+                      seatsavailable: 0,
+                      waiting: 0
+                     },
+                ]
+            }
+    }
+
+    loadGames = () => {
+        fetch('http://localhost:3000/', {
+            method: 'get'
+        }).then(response => response.json())
+        .then(game => {
+            if(game) {
+                 this.setState({ table: game })
+            }
+        })
+    }
+
+    handlePlusGameClick = (id) => {
+        this.setState({
+            gamerunning: this.state.table[id - 1].gamerunning++
+        })
+
+        fetch('http://localhost:3000/change-game', {
+            method: "post",
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                id: id,
+                gamerunning: this.state.table[id - 1].gamerunning
+            })
+        }).then(response => response.json())
+        .then(data => {
+            console.log(data);
+        })
+    }
+    handleMinusGameClick = (id) => {
+        this.setState({
+            gamerunning: this.state.table[id - 1].gamerunning--
+        })
+
+        fetch('http://localhost:3000/change-game', {
+            method: "post",
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                id: id,
+                gamerunning: this.state.table[id - 1].gamerunning
+            })
+        }).then(response => response.json())
+        .then(data => {
+            console.log(data);
+        })
+    }
+
+    handlePlusSeatsClick = (id) => {
+        this.setState({
+            seatsavailable: this.state.table[id - 1].seatsavailable++
+        })
+
+        fetch('http://localhost:3000/change-seats', {
+            method: "post",
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                id: id,
+                seatsavailable: this.state.table[id - 1].seatsavailable
+            })
+        }).then(response => response.json())
+        .then(data => {
+            console.log(data);
+        })
+    }
+    handleMinusSeatsClick = (id) => {
+        this.setState({
+            seatsavailable: this.state.table[id - 1].seatsavailable--
+        })
+
+        fetch('http://localhost:3000/change-seats', {
+            method: "post",
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                id: id,
+                seatsavailable: this.state.table[id - 1].seatsavailable
+            })
+        }).then(response => response.json())
+        .then(data => {
+            console.log(data);
+        })
+    }
+
+    handlePlusWaitingClick = (id) => {
+        this.setState({
+            waiting: this.state.table[id - 1].waiting++
+        })
+
+        fetch('http://localhost:3000/change-waiting', {
+            method: "post",
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                id: id,
+                waiting: this.state.table[id - 1].waiting
+            })
+        }).then(response => response.json())
+        .then(data => {
+            console.log(data);
+        })
+    }
+    handleMinusWaitingClick = (id) => {
+        this.setState({
+            waiting: this.state.table[id - 1].waiting--
+        })
+
+        fetch('http://localhost:3000/change-waiting', {
+            method: "post",
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                id: id,
+                waiting: this.state.table[id - 1].waiting
+            })
+        }).then(response => response.json())
+        .then(data => {
+            console.log(data);
+        })
+    }
+
+    render() {
+        const {table} = this.state;
+
+        return (
+            <div>
+                <button onClick={this.loadGames} className="f6 input-reset grow no-underline br-pill ph3 pv2 mb2 dib white bg-black">refresh</button>
+                <h1 className="white">Admin dashboard</h1>
+                <div className="pa4">
+                <div className="overflow-auto shadow-3">
+                    <table className="f8 w-100 mw10" cellSpacing="0">
+                        <thead>
+                            <tr className="stripe-dark">
+                                <th className="fw6 tl pa3 bg-navy white bb b--lightest-blue">Game</th>
+                                <th className="fw6 tl pa3 bg-navy white bb b--lightest-blue">min. Buy-in</th>
+                                <th className="fw6 tl pa3 bg-navy white bb b--lightest-blue">Games running</th>
+                                <th className="fw6 tl pa3 bg-navy white bb b--lightest-blue">Seats available</th>
+                                <th className="fw6 tl pa3 bg-navy white bb b--lightest-blue">Waiting</th>
+                            </tr>
+                        </thead>
+                        <tbody className="lh-copy white">
+                            <tr className="stripe-dark">
+                                <td className="pa3">{table[0].name}</td>
+                                <td className="pa3">{table[0].buyin}</td>
+                                <td className="pa3">
+                                    <button onClick={() => this.handleMinusGameClick(1)} className="ma3" ><i className="fas fa-minus"></i></button>
+                                    {
+                                        table[0].gamerunning
+            
+                                    }
+                                    <button onClick={() => this.handlePlusGameClick(1)} className="ma3"><i className="fas fa-plus"></i></button>
+                                </td>
+                                <td className="pa3">
+                                    <button onClick={() => this.handleMinusSeatsClick(1)} className="ma3" ><i className="fas fa-minus"></i></button>
+                                    {
+                                        table[0].seatsavailable
+                                    }
+                                    <button onClick={() => this.handlePlusSeatsClick(1)} className="ma3"><i className="fas fa-plus"></i></button>
+                                </td>
+                                <td className="pa3">
+                                    <button onClick={() => this.handleMinusWaitingClick(1)} className="ma3" ><i className="fas fa-minus"></i></button>
+                                    {
+                                        table[0].waiting
+                                    }
+                                    <button onClick={() => this.handlePlusWaitingClick(1)} className="ma3"><i className="fas fa-plus"></i></button>
+                                </td>
+                            </tr>
+                            <tr className="stripe-dark">
+                                <td className="pa3">{table[1].name}</td>
+                                <td className="pa3">{table[1].buyin}</td>
+                                <td className="pa3">
+                                    <button onClick={() => this.handleMinusGameClick(2)} className="ma3" ><i className="fas fa-minus"></i></button>
+                                    {
+                                        table[1].gamerunning
+            
+                                    }
+                                    <button onClick={() => this.handlePlusGameClick(2)} className="ma3"><i className="fas fa-plus"></i></button>
+                                </td>
+                                <td className="pa3">
+                                    <button onClick={() => this.handleMinusSeatsClick(2)} className="ma3" ><i className="fas fa-minus"></i></button>
+                                    {
+                                        table[1].seatsavailable
+                                    }
+                                    <button onClick={() => this.handlePlusSeatsClick(2)} className="ma3"><i className="fas fa-plus"></i></button>
+                                </td>
+                                <td className="pa3">
+                                    <button onClick={() => this.handleMinusWaitingClick(2)} className="ma3" ><i className="fas fa-minus"></i></button>
+                                    {
+                                        table[1].waiting
+                                    }
+                                    <button onClick={() => this.handlePlusWaitingClick(2)} className="ma3"><i className="fas fa-plus"></i></button>
+                                </td>
+                            </tr>
+                            <tr className="stripe-dark">
+                                <td className="pa3">{table[2].name}</td>
+                                <td className="pa3">{table[2].buyin}</td>
+                                <td className="pa3">
+                                    <button onClick={() => this.handleMinusGameClick(3)} className="ma3" ><i className="fas fa-minus"></i></button>
+                                    {
+                                        table[2].gamerunning
+            
+                                    }
+                                    <button onClick={() => this.handlePlusGameClick(3)} className="ma3"><i className="fas fa-plus"></i></button>
+                                </td>
+                                <td className="pa3">
+                                    <button onClick={() => this.handleMinusSeatsClick(3)} className="ma3" ><i className="fas fa-minus"></i></button>
+                                    {
+                                        table[2].seatsavailable
+                                    }
+                                    <button onClick={() => this.handlePlusSeatsClick(3)} className="ma3"><i className="fas fa-plus"></i></button>
+                                </td>
+                                <td className="pa3">
+                                    <button onClick={() => this.handleMinusWaitingClick(3)} className="ma3" ><i className="fas fa-minus"></i></button>
+                                    {
+                                        table[2].waiting
+                                    }
+                                    <button onClick={() => this.handlePlusWaitingClick(3)} className="ma3"><i className="fas fa-plus"></i></button>
+                                </td>
+                            </tr>
+                            <tr className="stripe-dark">
+                                <td className="pa3">{table[3].name}</td>
+                                <td className="pa3">{table[3].buyin}</td>
+                                <td className="pa3">
+                                    <button onClick={() => this.handleMinusGameClick(4)} className="ma3" ><i className="fas fa-minus"></i></button>
+                                    {
+                                        table[3].gamerunning
+            
+                                    }
+                                    <button onClick={() => this.handlePlusGameClick(4)} className="ma3"><i className="fas fa-plus"></i></button>
+                                </td>
+                                <td className="pa3">
+                                    <button onClick={() => this.handleMinusSeatsClick(4)} className="ma3" ><i className="fas fa-minus"></i></button>
+                                    {
+                                        table[3].seatsavailable
+                                    }
+                                    <button onClick={() => this.handlePlusSeatsClick(4)} className="ma3"><i className="fas fa-plus"></i></button>
+                                </td>
+                                <td className="pa3">
+                                    <button onClick={() => this.handleMinusWaitingClick(4)} className="ma3" ><i className="fas fa-minus"></i></button>
+                                    {
+                                        table[3].waiting
+                                    }
+                                    <button onClick={() => this.handlePlusWaitingClick(4)} className="ma3"><i className="fas fa-plus"></i></button>
+                                </td>
+                            </tr>
+                            <tr className="stripe-dark">
+                                <td className="pa3">{table[4].name}</td>
+                                <td className="pa3">{table[4].buyin}</td>
+                                <td className="pa3">
+                                    <button onClick={() => this.handleMinusGameClick(5)} className="ma3" ><i className="fas fa-minus"></i></button>
+                                    {
+                                        table[4].gamerunning
+            
+                                    }
+                                    <button onClick={() => this.handlePlusGameClick(5)} className="ma3"><i className="fas fa-plus"></i></button>
+                                </td>
+                                <td className="pa3">
+                                    <button onClick={() => this.handleMinusSeatsClick(5)} className="ma3" ><i className="fas fa-minus"></i></button>
+                                    {
+                                        table[4].seatsavailable
+                                    }
+                                    <button onClick={() => this.handlePlusSeatsClick(5)} className="ma3"><i className="fas fa-plus"></i></button>
+                                </td>
+                                <td className="pa3">
+                                    <button onClick={() => this.handleMinusWaitingClick(5)} className="ma3" ><i className="fas fa-minus"></i></button>
+                                    {
+                                        table[4].waiting
+                                    }
+                                    <button onClick={() => this.handlePlusWaitingClick(5)} className="ma3"><i className="fas fa-plus"></i></button>
+                                </td>
+                            </tr>
+                            <tr className="stripe-dark">
+                                <td className="pa3">{table[5].name}</td>
+                                <td className="pa3">{table[5].buyin}</td>
+                                <td className="pa3">
+                                    <button onClick={() => this.handleMinusGameClick(6)} className="ma3" ><i className="fas fa-minus"></i></button>
+                                    {
+                                        table[5].gamerunning
+            
+                                    }
+                                    <button onClick={() => this.handlePlusGameClick(6)} className="ma3"><i className="fas fa-plus"></i></button>
+                                </td>
+                                <td className="pa3">
+                                    <button onClick={() => this.handleMinusSeatsClick(6)} className="ma3" ><i className="fas fa-minus"></i></button>
+                                    {
+                                        table[5].seatsavailable
+                                    }
+                                    <button onClick={() => this.handlePlusSeatsClick(6)} className="ma3"><i className="fas fa-plus"></i></button>
+                                </td>
+                                <td className="pa3">
+                                    <button onClick={() => this.handleMinusWaitingClick(6)} className="ma3" ><i className="fas fa-minus"></i></button>
+                                    {
+                                        table[5].waiting
+                                    }
+                                    <button onClick={() => this.handlePlusWaitingClick(6)} className="ma3"><i className="fas fa-plus"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
-
-                <input className="ma2 b ph3 pv2 input-reset ba b--white white bg-transparent grow pointer f6 dib" type="reset"/>
-                <input className="ma2 b ph3 pv2 input-reset ba b--white white bg-transparent grow pointer f6 dib" type="submit"/>
         </div>
-    )
+        )
+    }
 }
 
 export default DashBoard;

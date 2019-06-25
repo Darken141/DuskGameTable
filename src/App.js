@@ -22,59 +22,66 @@ class App extends React.Component {
     super()
     this.state = {
       isLogginIn: false,
-      game: {
-        table: [{
+      game: [{
                 id: '',
                 name: '',
-                buyIn: '',
-                gameRunning: 0,
-                seatsAvailable: 0,
+                buyin: '',
+                gamerunning: 0,
+                seatsavailable: 0,
                 waiting: 0
               },
               {
                 id: '',
                 name: '',
-                buyIn: '',
-                gameRunning: 0,
-                seatsAvailable: 0,
+                buyin: '',
+                gamerunning: 0,
+                seatsavailable: 0,
                 waiting: 0
               },
               {
                 id: '',
                 name: '',
-                buyIn: '',
-                gameRunning: 0,
-                seatsAvailable: 0,
+                buyin: '',
+                gamerunning: 0,
+                seatsavailable: 0,
                 waiting: 0
               },
               {
                 id: '',
                 name: '',
-                buyIn: '',
-                gameRunning: 0,
-                seatsAvailable: 0,
+                buyin: '',
+                gamerunning: 0,
+                seatsavailable: 0,
                 waiting: 0
               },
               {
                 id: '',
                 name: '',
-                buyIn: '',
-                gameRunning: 0,
-                seatsAvailable: 0,
+                buyin: '',
+                gamerunning: 0,
+                seatsavailable: 0,
                 waiting: 0
               },
               {
                 id: '',
                 name: '',
-                buyIn: '',
-                gameRunning: 0,
-                seatsAvailable: 0,
+                buyin: '',
+                gamerunning: 0,
+                seatsavailable: 0,
                 waiting: 0
                },
         ]
-      }
+      
     }
   }
+
+handleLogIn = () => {
+  if(this.state.isLogginIn){
+    this.setState({isLogginIn: false})
+  } else {
+    this.setState({isLogginIn: true})
+  }
+}
 
 loadTable = () => {
   setInterval(() => {fetch('http://localhost:3000/', {
@@ -83,25 +90,26 @@ loadTable = () => {
         .then(response => response.json())
         .then(game => {
             if(game) {
-                this.setState({
-                  game: 
-                    game.game
-                })
+                 this.setState({ game: game })
             }
+            console.log(game)
         })}, 1000)
-
 }
 
   render() {
     return (
       <div onLoad={this.loadTable} className="App">
+      
       <Particles className="particles" params={particlesOption}/>
       {
-        this.state.route === "admin" ? 
+        this.state.isLogginIn ? 
+        <div>
+        <button onClick={this.handleLogIn} className="btn-login f6 input-reset grow no-underline br-pill ph3 pv2 mb2 dib white bg-black">Log out</button>
         <Dashboard/>
+        </div>
         :
         <div>
-          <img className="logo pt4" src={logo} alt="DuskTillDawn-Logo"/>
+          <img onClick={this.handleLogIn} className="logo pt4" src={logo} alt="DuskTillDawn-Logo"/>
           <Table table={this.state.game}/> 
         </div>
       }
