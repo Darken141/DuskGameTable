@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/DuskGameTable/static/css/main.d99e285c.chunk.css",
-    "main.js": "/DuskGameTable/static/js/main.8b003a83.chunk.js",
-    "main.js.map": "/DuskGameTable/static/js/main.8b003a83.chunk.js.map",
+    "main.js": "/DuskGameTable/static/js/main.408a4d1b.chunk.js",
+    "main.js.map": "/DuskGameTable/static/js/main.408a4d1b.chunk.js.map",
     "runtime~main.js": "/DuskGameTable/static/js/runtime~main.ef6b079c.js",
     "runtime~main.js.map": "/DuskGameTable/static/js/runtime~main.ef6b079c.js.map",
     "static/css/2.31dafeb2.chunk.css": "/DuskGameTable/static/css/2.31dafeb2.chunk.css",
     "static/js/2.df614183.chunk.js": "/DuskGameTable/static/js/2.df614183.chunk.js",
     "static/js/2.df614183.chunk.js.map": "/DuskGameTable/static/js/2.df614183.chunk.js.map",
     "index.html": "/DuskGameTable/index.html",
-    "precache-manifest.92440e8e2d716bd1dc7b75a8530c87fa.js": "/DuskGameTable/precache-manifest.92440e8e2d716bd1dc7b75a8530c87fa.js",
+    "precache-manifest.9ff52bf0c46e785c171b55d9bd52d236.js": "/DuskGameTable/precache-manifest.9ff52bf0c46e785c171b55d9bd52d236.js",
     "service-worker.js": "/DuskGameTable/service-worker.js",
     "static/css/2.31dafeb2.chunk.css.map": "/DuskGameTable/static/css/2.31dafeb2.chunk.css.map",
     "static/css/main.d99e285c.chunk.css.map": "/DuskGameTable/static/css/main.d99e285c.chunk.css.map",
