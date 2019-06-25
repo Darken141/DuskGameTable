@@ -21,7 +21,51 @@ class App extends React.Component {
   constructor(){
     super()
     this.state = {
-      route: "home"
+      isLogginIn: false,
+      game: {
+        holdem1: {
+          name: 'NHLE 1/1',
+          buyIn: '£50',
+          gameRunning: 0,
+          seatsAvailable: 8,
+          waiting: 0
+        },
+        holdem2: {
+          name: 'NHLE 1/2',
+          buyIn: '£100',
+          gameRunning: 0,
+          seatsAvailable: 8,
+          waiting: 0
+        },
+        plo1: {
+          name: 'PLO 1/1/2',
+          buyIn: '£100',
+          gameRunning: 0,
+          seatsAvailable: 8,
+          waiting: 0
+        },
+        plo2: {
+          name: 'PLO 2/2/5',
+          buyIn: '£200',
+          gameRunning: 0,
+          seatsAvailable: 8,
+          waiting: 0
+        },
+        dc1: {
+          name: 'Dealer Choice 1/1',
+          buyIn: '£100',
+          gameRunning: 0,
+          seatsAvailable: 8,
+          waiting: 0
+        },
+        dc2: {
+          name: 'Dealer Choice 2/2',
+          buyIn: '£200',
+          gameRunning: 0,
+          seatsAvailable: 8,
+          waiting: 0
+        }
+      }
     }
   }
 
@@ -35,7 +79,7 @@ class App extends React.Component {
         :
         <div>
           <img className="logo pt4" src={logo} alt="DuskTillDawn-Logo"/>
-          <Table/> 
+          <Table table={this.state.game}/> 
         </div>
       }
       </div>
