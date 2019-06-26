@@ -84,7 +84,7 @@ handleLogIn = () => {
 }
 
 loadTable = () => {
-  setInterval(() => {fetch('http://localhost:3000/', {
+  setInterval(() => {fetch('https://mighty-castle-66787.herokuapp.com/', {
             method: 'get'
         })
         .then(response => response.json())

@@ -57,7 +57,7 @@ class DashBoard extends React.Component {
     }
 
     loadGames = () => {
-        fetch('http://localhost:3000/', {
+        fetch('https://mighty-castle-66787.herokuapp.com/', {
             method: 'get'
         }).then(response => response.json())
         .then(game => {
@@ -72,7 +72,7 @@ class DashBoard extends React.Component {
             gamerunning: this.state.table[id - 1].gamerunning++
         })
 
-        fetch('http://localhost:3000/change-game', {
+        fetch('https://mighty-castle-66787.herokuapp.com/change-game', {
             method: "post",
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
@@ -89,7 +89,7 @@ class DashBoard extends React.Component {
             gamerunning: this.state.table[id - 1].gamerunning--
         })
 
-        fetch('http://localhost:3000/change-game', {
+        fetch('https://mighty-castle-66787.herokuapp.com/change-game', {
             method: "post",
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
@@ -107,7 +107,7 @@ class DashBoard extends React.Component {
             seatsavailable: this.state.table[id - 1].seatsavailable++
         })
 
-        fetch('http://localhost:3000/change-seats', {
+        fetch('https://mighty-castle-66787.herokuapp.com/change-seats', {
             method: "post",
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
@@ -124,7 +124,7 @@ class DashBoard extends React.Component {
             seatsavailable: this.state.table[id - 1].seatsavailable--
         })
 
-        fetch('http://localhost:3000/change-seats', {
+        fetch('https://mighty-castle-66787.herokuapp.com/change-seats', {
             method: "post",
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
@@ -142,7 +142,7 @@ class DashBoard extends React.Component {
             waiting: this.state.table[id - 1].waiting++
         })
 
-        fetch('http://localhost:3000/change-waiting', {
+        fetch('https://mighty-castle-66787.herokuapp.com/change-waiting', {
             method: "post",
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
@@ -159,7 +159,7 @@ class DashBoard extends React.Component {
             waiting: this.state.table[id - 1].waiting--
         })
 
-        fetch('http://localhost:3000/change-waiting', {
+        fetch('https://mighty-castle-66787.herokuapp.com/change-waiting', {
             method: "post",
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
