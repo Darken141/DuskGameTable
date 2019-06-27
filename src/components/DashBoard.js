@@ -4,6 +4,8 @@ class DashBoard extends React.Component {
     constructor(){
         super();
         this.state = {
+            nameChange: '',
+            buyinChange: '',
             table: [{
                       id: '',
                       name: '',
@@ -64,6 +66,46 @@ class DashBoard extends React.Component {
             if(game) {
                  this.setState({ table: game })
             }
+        })
+    }
+
+    onInputChange = (event) => {
+        this.setState({
+            nameChange: event.target.value
+        })
+    }
+
+    onInputBuyinChange = (event) => {
+        this.setState({
+            buyinChange: event.target.value
+        })
+    }
+
+    handleSubmitNameChange = (id) => {
+        fetch('https://mighty-castle-66787.herokuapp.com/change-game-name', {
+            method: "post",
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                id: id,
+                name: this.state.nameChange
+            })
+        }).then(response => response.json())
+        .then(data => {
+            console.log(data);
+        })
+    }
+
+    handleSubmitBuyinChange = (id) => {
+        fetch('https://mighty-castle-66787.herokuapp.com/change-buyin', {
+            method: "post",
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                id: id,
+                buyin: '£' + this.state.buyinChange
+            })
+        }).then(response => response.json())
+        .then(data => {
+            console.log(data);
         })
     }
 
@@ -185,7 +227,7 @@ class DashBoard extends React.Component {
                         <thead>
                             <tr className="stripe-dark">
                                 <th className="fw6 tl pa3 bg-navy white bb b--lightest-blue">Game</th>
-                                <th className="fw6 tl pa3 bg-navy white bb b--lightest-blue">min. Buy-in</th>
+                                <th className="fw6 tl pa3 bg-navy white bb b--lightest-blue">min. Buyin</th>
                                 <th className="fw6 tl pa3 bg-navy white bb b--lightest-blue">Games running</th>
                                 <th className="fw6 tl pa3 bg-navy white bb b--lightest-blue">Seats available</th>
                                 <th className="fw6 tl pa3 bg-navy white bb b--lightest-blue">Waiting</th>
@@ -193,8 +235,14 @@ class DashBoard extends React.Component {
                         </thead>
                         <tbody className="lh-copy white">
                             <tr className="stripe-dark">
-                                <td className="pa3">{table[0].name}</td>
-                                <td className="pa3">{table[0].buyin}</td>
+                                <td className="pa3">
+                                    <input onChange={this.onInputChange} type="text" placeholder={table[0].name}/>
+                                    <input onClick={() => this.handleSubmitNameChange(1)} type="submit"/>
+                                </td>
+                                <td className="pa3">
+                                    <input onChange={this.onInputBuyinChange} type="text" placeholder={table[0].buyin}/>
+                                    <input onClick={() => this.handleSubmitBuyinChange(1)} type="submit"/>
+                                </td>
                                 <td className="pa3">
                                     <button onClick={() => this.handleMinusGameClick(1)} className="ma3" ><i className="fas fa-minus"></i></button>
                                     {
@@ -219,8 +267,13 @@ class DashBoard extends React.Component {
                                 </td>
                             </tr>
                             <tr className="stripe-dark">
-                                <td className="pa3">{table[1].name}</td>
-                                <td className="pa3">{table[1].buyin}</td>
+                                <td className="pa3">
+                                    <input onChange={this.onInputChange} type="text" placeholder={table[1].name}/>
+                                    <input onClick={() => this.handleSubmitNameChange(2)} type="submit"/></td>
+                                <td className="pa3">
+                                    <input onChange={this.onInputBuyinChange} type="text" placeholder={table[1].buyin}/>
+                                    <input onClick={() => this.handleSubmitBuyinChange(2)} type="submit"/>
+                                </td>
                                 <td className="pa3">
                                     <button onClick={() => this.handleMinusGameClick(2)} className="ma3" ><i className="fas fa-minus"></i></button>
                                     {
@@ -245,8 +298,13 @@ class DashBoard extends React.Component {
                                 </td>
                             </tr>
                             <tr className="stripe-dark">
-                                <td className="pa3">{table[2].name}</td>
-                                <td className="pa3">{table[2].buyin}</td>
+                                <td className="pa3">
+                                    <input onChange={this.onInputChange} type="text" placeholder={table[2].name}/>
+                                    <input onClick={() => this.handleSubmitNameChange(3)} type="submit"/></td>
+                                <td className="pa3">
+                                    <input onChange={this.onInputBuyinChange} type="text" placeholder={table[2].buyin}/>
+                                    <input onClick={() => this.handleSubmitBuyinChange(3)} type="submit"/>
+                                </td>
                                 <td className="pa3">
                                     <button onClick={() => this.handleMinusGameClick(3)} className="ma3" ><i className="fas fa-minus"></i></button>
                                     {
@@ -271,8 +329,13 @@ class DashBoard extends React.Component {
                                 </td>
                             </tr>
                             <tr className="stripe-dark">
-                                <td className="pa3">{table[3].name}</td>
-                                <td className="pa3">{table[3].buyin}</td>
+                                <td className="pa3">
+                                    <input onChange={this.onInputChange} type="text" placeholder={table[3].name}/>
+                                    <input onClick={() => this.handleSubmitNameChange(4)} type="submit"/></td>
+                                <td className="pa3">
+                                    <input onChange={this.onInputBuyinChange} type="text" placeholder={table[3].buyin}/>
+                                    <input onClick={() => this.handleSubmitBuyinChange(4)} type="submit"/>
+                                </td>
                                 <td className="pa3">
                                     <button onClick={() => this.handleMinusGameClick(4)} className="ma3" ><i className="fas fa-minus"></i></button>
                                     {
@@ -297,8 +360,14 @@ class DashBoard extends React.Component {
                                 </td>
                             </tr>
                             <tr className="stripe-dark">
-                                <td className="pa3">{table[4].name}</td>
-                                <td className="pa3">{table[4].buyin}</td>
+                                <td className="pa3">
+                                    <input onChange={this.onInputChange} type="text" placeholder={table[4].name}/>
+                                    <input onClick={() => this.handleSubmitNameChange(5)} type="submit"/>
+                                </td>
+                                <td className="pa3">
+                                <input onChange={this.onInputBuyinChange} type="text" placeholder={table[4].buyin}/>
+                                <input onClick={() => this.handleSubmitBuyinChange(5)} type="submit"/>
+                                </td>
                                 <td className="pa3">
                                     <button onClick={() => this.handleMinusGameClick(5)} className="ma3" ><i className="fas fa-minus"></i></button>
                                     {
@@ -323,8 +392,13 @@ class DashBoard extends React.Component {
                                 </td>
                             </tr>
                             <tr className="stripe-dark">
-                                <td className="pa3">{table[5].name}</td>
-                                <td className="pa3">{table[5].buyin}</td>
+                                <td className="pa3">
+                                    <input onChange={this.onInputChange} type="text" placeholder={table[5].name}/>
+                                    <input onClick={() => this.handleSubmitNameChange(6)} type="submit"/></td>
+                                <td className="pa3">
+                                <input onChange={this.onInputBuyinChange} type="text" placeholder={table[5].buyin}/>
+                                <input onClick={() => this.handleSubmitBuyinChange(6)} type="submit"/>
+                                </td>
                                 <td className="pa3">
                                     <button onClick={() => this.handleMinusGameClick(6)} className="ma3" ><i className="fas fa-minus"></i></button>
                                     {

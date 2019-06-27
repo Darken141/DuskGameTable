@@ -2,7 +2,7 @@ import React from 'react';
 
 const Table = ( { table } ) => {
     return (
-        <div className="pa4">
+        <div className="pa4 table">
             <div className="overflow-auto shadow-3">
                 <table className="f8 w-100 mw10" cellSpacing="0">
                     <thead>
