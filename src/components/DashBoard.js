@@ -1,77 +1,38 @@
 import React from 'react';
 
 class DashBoard extends React.Component {
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
         this.state = {
+            serverData: "http://localhost:3000/",
             nameChange: '',
             buyinChange: '',
-            table: [{
-                      id: '',
-                      name: '',
-                      buyin: '',
-                      gamerunning: 0,
-                      seatsavailable: 0,
-                      waiting: 0
-                    },
-                    {
-                      id: '',
-                      name: '',
-                      buyin: '',
-                      gamerunning: 0,
-                      seatsavailable: 0,
-                      waiting: 0
-                    },
-                    {
-                      id: '',
-                      name: '',
-                      buyin: '',
-                      gamerunning: 0,
-                      seatsavailable: 0,
-                      waiting: 0
-                    },
-                    {
-                      id: '',
-                      name: '',
-                      buyin: '',
-                      gamerunning: 0,
-                      seatsavailable: 0,
-                      waiting: 0
-                    },
-                    {
-                      id: '',
-                      name: '',
-                      buyin: '',
-                      gamerunning: 0,
-                      seatsavailable: 0,
-                      waiting: 0
-                    },
-                    {
-                      id: '',
-                      name: '',
-                      buyin: '',
-                      gamerunning: 0,
-                      seatsavailable: 0,
-                      waiting: 0
-                     },
-                ]
+            highhand: ''
             }
     }
 
-    loadGames = () => {
-        fetch('https://mighty-castle-66787.herokuapp.com/', {
-            method: 'get'
-        }).then(response => response.json())
-        .then(game => {
-            if(game) {
-                 this.setState({ table: game })
-            }
-        })
+    onHighHandInputChange = (event) => {
+        this.setState({ highhand: event.target.value})
     }
 
     onInputChange = (event) => {
         this.setState({
             nameChange: event.target.value
+        })
+    }
+
+    handleHighHandChange = (id) => {
+        //code to change and set up high hand
+        fetch( this.state.serverData + 'change-highhand', {
+            method: "post",
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                id: id,
+                highhand: this.state.highhand
+            })
+        }).then(response => response.json())
+        .then(data => {
+            this.props.loadHighHand();
         })
     }
 
@@ -82,146 +43,127 @@ class DashBoard extends React.Component {
     }
 
     handleSubmitNameChange = (id) => {
-        fetch('https://mighty-castle-66787.herokuapp.com/change-game-name', {
-            method: "post",
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({
-                id: id,
-                name: this.state.nameChange
-            })
-        }).then(response => response.json())
-        .then(data => {
-            console.log(data);
-        })
+        this.updateDatabase('change-game-name', id);
     }
 
     handleSubmitBuyinChange = (id) => {
-        fetch('https://mighty-castle-66787.herokuapp.com/change-buyin', {
-            method: "post",
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({
-                id: id,
-                buyin: '£' + this.state.buyinChange
+        this.updateDatabase('change-buyin', id);
+    }
+
+    updateDatabase = (route, id) => {
+        if (route === 'change-game-name'){
+            fetch( this.state.serverData + 'change-game-name', {
+                method: "post",
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    id: id,
+                    name: this.state.nameChange
+                })
+            }).then(response => response.json())
+            .then(data => {
+                console.log(data);
             })
-        }).then(response => response.json())
-        .then(data => {
-            console.log(data);
-        })
+        } else if (route === 'change-buyin'){
+            fetch(this.state.serverData + 'change-buyin', {
+                method: "post",
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    id: id,
+                    buyin: '£' + this.state.buyinChange
+                })
+            }).then(response => response.json())
+            .then(data => {
+                console.log(data);
+            })
+        } else if (route === 'change-game'){
+            fetch(this.state.serverData + route, {
+                method: "post",
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    id: id,
+                    gamerunning: this.props.table[id - 1].gamerunning
+                })
+            }).then(response => response.json())
+            .then(data => {
+                console.log(data);
+            })
+        } else if (route === 'change-seats'){
+            fetch(this.state.serverData + route, {
+                method: "post",
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    id: id,
+                    seatsavailable: this.props.table[id - 1].seatsavailable
+                })
+            }).then(response => response.json())
+            .then(data => {
+                console.log(data);
+            })
+        } else if (route === 'change-waiting'){
+            fetch(this.state.serverData + route, {
+                method: "post",
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    id: id,
+                    waiting: this.props.table[id - 1].waiting
+                })
+            }).then(response => response.json())
+            .then(data => {
+                console.log(data);
+            })
+        }
     }
 
     handlePlusGameClick = (id) => {
         this.setState({
-            gamerunning: this.state.table[id - 1].gamerunning++
+            gamerunning: this.props.table[id - 1].gamerunning++
         })
-
-        fetch('https://mighty-castle-66787.herokuapp.com/change-game', {
-            method: "post",
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({
-                id: id,
-                gamerunning: this.state.table[id - 1].gamerunning
-            })
-        }).then(response => response.json())
-        .then(data => {
-            console.log(data);
-        })
+        this.updateDatabase('change-game', id);
     }
     handleMinusGameClick = (id) => {
         this.setState({
-            gamerunning: this.state.table[id - 1].gamerunning--
+            gamerunning: this.props.table[id - 1].gamerunning--
         })
-
-        fetch('https://mighty-castle-66787.herokuapp.com/change-game', {
-            method: "post",
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({
-                id: id,
-                gamerunning: this.state.table[id - 1].gamerunning
-            })
-        }).then(response => response.json())
-        .then(data => {
-            console.log(data);
-        })
+        this.updateDatabase('change-game', id);
     }
 
     handlePlusSeatsClick = (id) => {
         this.setState({
-            seatsavailable: this.state.table[id - 1].seatsavailable++
+            seatsavailable: this.props.table[id - 1].seatsavailable++
         })
-
-        fetch('https://mighty-castle-66787.herokuapp.com/change-seats', {
-            method: "post",
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({
-                id: id,
-                seatsavailable: this.state.table[id - 1].seatsavailable
-            })
-        }).then(response => response.json())
-        .then(data => {
-            console.log(data);
-        })
+        this.updateDatabase('change-seats', id)
     }
     handleMinusSeatsClick = (id) => {
         this.setState({
-            seatsavailable: this.state.table[id - 1].seatsavailable--
+            seatsavailable: this.props.table[id - 1].seatsavailable--
         })
-
-        fetch('https://mighty-castle-66787.herokuapp.com/change-seats', {
-            method: "post",
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({
-                id: id,
-                seatsavailable: this.state.table[id - 1].seatsavailable
-            })
-        }).then(response => response.json())
-        .then(data => {
-            console.log(data);
-        })
+        this.updateDatabase('change-seats', id);
     }
 
     handlePlusWaitingClick = (id) => {
         this.setState({
-            waiting: this.state.table[id - 1].waiting++
+            waiting: this.props.table[id - 1].waiting++
         })
-
-        fetch('https://mighty-castle-66787.herokuapp.com/change-waiting', {
-            method: "post",
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({
-                id: id,
-                waiting: this.state.table[id - 1].waiting
-            })
-        }).then(response => response.json())
-        .then(data => {
-            console.log(data);
-        })
+        this.updateDatabase('change-waiting', id);
     }
     handleMinusWaitingClick = (id) => {
         this.setState({
-            waiting: this.state.table[id - 1].waiting--
+            waiting: this.props.table[id - 1].waiting--
         })
-
-        fetch('https://mighty-castle-66787.herokuapp.com/change-waiting', {
-            method: "post",
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({
-                id: id,
-                waiting: this.state.table[id - 1].waiting
-            })
-        }).then(response => response.json())
-        .then(data => {
-            console.log(data);
-        })
+        this.updateDatabase('change-waiting', id)
     }
 
     render() {
-        const {table} = this.state;
+        const {table, highhand} = this.props;
 
         return (
             <div>
-                <button onClick={this.loadGames} className="f6 input-reset grow no-underline br-pill ph3 pv2 mb2 dib white bg-black">refresh</button>
                 <h1 className="white">Admin dashboard</h1>
                 <div className="pa4">
+                <div>
+                <input onChange={this.onHighHandInputChange} type='text' placeholder={highhand[0].name}/>
+                <input onClick={() => this.handleHighHandChange(1)} type='submit' value='submit'/>
+                </div>
                 <div className="overflow-auto shadow-3">
                     <table className="f8 w-100 mw10" cellSpacing="0">
                         <thead>
@@ -236,34 +178,61 @@ class DashBoard extends React.Component {
                         <tbody className="lh-copy white">
                             <tr className="stripe-dark">
                                 <td className="pa3">
-                                    <input onChange={this.onInputChange} type="text" placeholder={table[0].name}/>
-                                    <input onClick={() => this.handleSubmitNameChange(1)} type="submit"/>
+                                    <input 
+                                        onChange={this.onInputChange} 
+                                        type="text" 
+                                        placeholder={table[0].name}/>
+                                    <input 
+                                        onClick={() => this.handleSubmitNameChange(1)} 
+                                        type="submit"/>
                                 </td>
                                 <td className="pa3">
-                                    <input onChange={this.onInputBuyinChange} type="text" placeholder={table[0].buyin}/>
-                                    <input onClick={() => this.handleSubmitBuyinChange(1)} type="submit"/>
+                                    <input 
+                                        onChange={this.onInputBuyinChange} 
+                                        type="text" 
+                                        placeholder={table[0].buyin}/>
+                                    <input 
+                                        onClick={() => this.handleSubmitBuyinChange(1)} 
+                                        type="submit"/>
                                 </td>
                                 <td className="pa3">
-                                    <button onClick={() => this.handleMinusGameClick(1)} className="ma3" ><i className="fas fa-minus"></i></button>
-                                    {
-                                        table[0].gamerunning
-            
-                                    }
-                                    <button onClick={() => this.handlePlusGameClick(1)} className="ma3"><i className="fas fa-plus"></i></button>
+                                    <button 
+                                        onClick={() => this.handleMinusGameClick(1)} 
+                                        className="ma3">
+                                        <i className="fas fa-minus"></i>
+                                    </button>
+                                    {table[0].gamerunning}
+                                    <button 
+                                        onClick={() => this.handlePlusGameClick(1)} 
+                                        className="ma3">
+                                        <i className="fas fa-plus"></i>
+                                    </button>
                                 </td>
                                 <td className="pa3">
-                                    <button onClick={() => this.handleMinusSeatsClick(1)} className="ma3" ><i className="fas fa-minus"></i></button>
-                                    {
-                                        table[0].seatsavailable
-                                    }
-                                    <button onClick={() => this.handlePlusSeatsClick(1)} className="ma3"><i className="fas fa-plus"></i></button>
+                                    <button
+                                        onClick={() => this.handleMinusSeatsClick(1)} 
+                                        className="ma3" >
+                                        <i className="fas fa-minus"></i>
+                                    </button>
+                                    {table[0].seatsavailable}
+                                    <button 
+                                        onClick={() => this.handlePlusSeatsClick(1)} 
+                                        className="ma3">
+                                        <i className="fas fa-plus"></i>
+                                    </button>
                                 </td>
                                 <td className="pa3">
-                                    <button onClick={() => this.handleMinusWaitingClick(1)} className="ma3" ><i className="fas fa-minus"></i></button>
-                                    {
-                                        table[0].waiting
-                                    }
-                                    <button onClick={() => this.handlePlusWaitingClick(1)} className="ma3"><i className="fas fa-plus"></i></button>
+                                    <button 
+                                        onClick={() => this.handleMinusWaitingClick(1)} 
+                                        className="ma3" >
+                                        <i className="fas fa-minus"></i>
+                                    </button>
+                                    {table[0].waiting}
+                                    <button 
+                                        onClick={() => this.handlePlusWaitingClick(1)} 
+                                        className="ma3">
+                                        <i className="fas fa-plus"></i>
+                                    </button>
                                 </td>
                             </tr>
                             <tr className="stripe-dark">
@@ -424,6 +393,7 @@ class DashBoard extends React.Component {
                             </tr>
                         </tbody>
                     </table>
+                    
                 </div>
             </div>
         </div>
