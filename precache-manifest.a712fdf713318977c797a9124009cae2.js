@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "6723196e9f89a8db6b6c0f193c392b8f",
+    "revision": "8b4eb4dc17e000cf8325f2330720158f",
     "url": "/DuskGameTable/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/DuskGameTable/static/css/2.31dafeb2.chunk.css"
   },
   {
-    "revision": "0cd8216ffe6012b4dca6",
+    "revision": "a8e1b759140772a08610",
     "url": "/DuskGameTable/static/css/main.02ce5497.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/DuskGameTable/static/js/2.41c30be4.chunk.js"
   },
   {
-    "revision": "0cd8216ffe6012b4dca6",
-    "url": "/DuskGameTable/static/js/main.4bc8c7c6.chunk.js"
+    "revision": "a8e1b759140772a08610",
+    "url": "/DuskGameTable/static/js/main.90c86ecb.chunk.js"
   },
   {
     "revision": "9488736a532dc36d2733",
