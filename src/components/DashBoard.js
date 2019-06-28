@@ -4,7 +4,7 @@ class DashBoard extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            serverData: "http://localhost:3000/",
+            serverData: "https://mighty-castle-66787.herokuapp.com/",
             nameChange: '',
             buyinChange: '',
             highhand: ''
