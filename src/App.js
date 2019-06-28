@@ -22,7 +22,7 @@ class App extends React.Component {
   constructor(){
     super()
     this.state = {
-      serverData: "http://localhost:3000/",
+      serverData: "https://mighty-castle-66787.herokuapp.com/",
       showScreen: 'table',
       highhand: [{
         id: '',
