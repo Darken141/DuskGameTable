@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/DuskGameTable/static/css/main.c8f3a07c.chunk.css",
-    "main.js": "/DuskGameTable/static/js/main.65dca044.chunk.js",
-    "main.js.map": "/DuskGameTable/static/js/main.65dca044.chunk.js.map",
+    "main.css": "/DuskGameTable/static/css/main.02ce5497.chunk.css",
+    "main.js": "/DuskGameTable/static/js/main.4bc8c7c6.chunk.js",
+    "main.js.map": "/DuskGameTable/static/js/main.4bc8c7c6.chunk.js.map",
     "runtime~main.js": "/DuskGameTable/static/js/runtime~main.ef6b079c.js",
     "runtime~main.js.map": "/DuskGameTable/static/js/runtime~main.ef6b079c.js.map",
     "static/css/2.31dafeb2.chunk.css": "/DuskGameTable/static/css/2.31dafeb2.chunk.css",
-    "static/js/2.bd2aee2a.chunk.js": "/DuskGameTable/static/js/2.bd2aee2a.chunk.js",
-    "static/js/2.bd2aee2a.chunk.js.map": "/DuskGameTable/static/js/2.bd2aee2a.chunk.js.map",
+    "static/js/2.41c30be4.chunk.js": "/DuskGameTable/static/js/2.41c30be4.chunk.js",
+    "static/js/2.41c30be4.chunk.js.map": "/DuskGameTable/static/js/2.41c30be4.chunk.js.map",
     "index.html": "/DuskGameTable/index.html",
-    "precache-manifest.fc24a0f322bce73f950936951eb5c666.js": "/DuskGameTable/precache-manifest.fc24a0f322bce73f950936951eb5c666.js",
+    "precache-manifest.3c265a338d91aed68d12c3b94ec705e9.js": "/DuskGameTable/precache-manifest.3c265a338d91aed68d12c3b94ec705e9.js",
     "service-worker.js": "/DuskGameTable/service-worker.js",
     "static/css/2.31dafeb2.chunk.css.map": "/DuskGameTable/static/css/2.31dafeb2.chunk.css.map",
-    "static/css/main.c8f3a07c.chunk.css.map": "/DuskGameTable/static/css/main.c8f3a07c.chunk.css.map",
+    "static/css/main.02ce5497.chunk.css.map": "/DuskGameTable/static/css/main.02ce5497.chunk.css.map",
     "static/media/DuskLogo.png": "/DuskGameTable/static/media/DuskLogo.4fa4780b.png"
   }
 }
