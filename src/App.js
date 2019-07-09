@@ -116,6 +116,15 @@ loadTable = () => {
 
 }
 
+componentDidMount() {
+  setInterval(() => {
+    if(this.state.showScreen === 'table'){
+      return this.setState({ showScreen: 'highhand'})
+    } else {
+      return this.setState({ showScreen: 'table'})
+    }
+  }, 10000);
+}
 
 render() {
   return (
@@ -131,18 +140,12 @@ render() {
         this.state.showScreen === 'table' ?
         <div>
         <img onClick={this.handleLogIn} className="logo pt4" src={logo} alt="DuskTillDawn-Logo"/>
-        <Table on table={this.state.games}/> 
-        {setTimeout(() => {
-          this.setState({showScreen: 'highhand'})
-        }, 10000)}
+        <Table table={this.state.games}/> 
         </div>
         :
         <div>
         <img onClick={this.handleLogIn} className="logo pt4" src={logo} alt="DuskTillDawn-Logo"/> 
         <HighHand highhand={this.state.highhand}/>
-        {setTimeout(() => {
-          this.setState({showScreen: 'table'})
-        }, 10000)}
         </div>
       }
       </div>
