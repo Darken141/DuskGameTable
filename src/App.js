@@ -119,6 +119,7 @@ loadTable = () => {
 componentDidMount() {
   setInterval(() => {
     if(this.state.showScreen === 'table'){
+      this.loadHighHand();
       return this.setState({ showScreen: 'highhand'})
     } else {
       return this.setState({ showScreen: 'table'})
