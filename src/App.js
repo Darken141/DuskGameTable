@@ -3,7 +3,6 @@ import logo from './DuskLogo.png';
 import Particles from 'react-particles-js';
 import Table from './components/Table';
 import Dashboard from './components/DashBoard';
-import HighHand from './components/HighHand';
 import './App.css';
 
 const particlesOption = {
@@ -23,7 +22,6 @@ class App extends React.Component {
     super()
     this.state = {
       serverData: "https://mighty-castle-66787.herokuapp.com/",
-      showScreen: 'table',
       highhand: [{
         id: '',
         name: ''
@@ -116,17 +114,6 @@ loadTable = () => {
 
 }
 
-componentDidMount() {
-  setInterval(() => {
-    if(this.state.showScreen === 'table'){
-      this.loadHighHand();
-      return this.setState({ showScreen: 'highhand'})
-    } else {
-      return this.setState({ showScreen: 'table'})
-    }
-  }, 10000);
-}
-
 render() {
   return (
     <div onLoad={this.loadTable} className="App">
@@ -138,15 +125,9 @@ render() {
         <Dashboard loadHighHand={this.loadHighHand} highhand={this.state.highhand} table={this.state.games}/>
         </div>
         :
-        this.state.showScreen === 'table' ?
         <div>
         <img onClick={this.handleLogIn} className="logo pt4" src={logo} alt="DuskTillDawn-Logo"/>
         <Table table={this.state.games}/> 
-        </div>
-        :
-        <div>
-        <img onClick={this.handleLogIn} className="logo pt4" src={logo} alt="DuskTillDawn-Logo"/> 
-        <HighHand highhand={this.state.highhand}/>
         </div>
       }
       </div>

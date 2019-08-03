@@ -154,16 +154,12 @@ class DashBoard extends React.Component {
     }
 
     render() {
-        const {table, highhand} = this.props;
+        const {table} = this.props;
 
         return (
             <div>
                 <h1 className="white">Admin dashboard</h1>
                 <div className="pa4">
-                <div>
-                <input onChange={this.onHighHandInputChange} type='text' placeholder={highhand[0].name}/>
-                <input onClick={() => this.handleHighHandChange(1)} type='submit' value='submit'/>
-                </div>
                 <div className="overflow-auto shadow-3">
                     <table className="f8 w-100 mw10" cellSpacing="0">
                         <thead>
