@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/DuskGameTable/precache-manifest.2d2f43d351cace11f3f095e413c392da.js"
+  "/DuskGameTable/precache-manifest.1aebe6a1a6d1715adafb231af5393f3f.js"
 );
 
 self.addEventListener('message', (event) => {
